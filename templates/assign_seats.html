@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<script>
+	g_cluster_capacities = [79, 75, 36]; //tactical global, there's probably a better way
+</script>
+<div id="error">&nbsp;</div>
+<p>Exam ID: <input type="text" id="id" onchange="get_exam('id')"></p>
+<p>Date: <input type="text" id="date" onchange="get_exam('date')"></p>
+<p>Name: <input type="text" id="name" disabled="disabled"></p>
+<p>Cursus: <input type="text" id="cursus" disabled="disabled"></p>
+<p>Subscribed users: <span id="subscribed_users"></span> / <span id="max_people"></span></p>
+<p>Location: <input type="text" id="location" disabled="disabled"></p>
+<div id="cluster_flex">
+	<p>Clusters:
+		<ul id="cluster_checkboxes">
+			<li>
+				<input type="checkbox" id="cluster1" onchange="set_progress_bars()">
+				Cluster 1 (capacity <span class="cluster_capacity"></span>)
+			</li>
+			<li>
+				<input type="checkbox" id="cluster2" onchange="set_progress_bars()">
+				Cluster 2 (capacity <span class="cluster_capacity"></span>)
+			</li>
+			<li>
+				<input type="checkbox" id="cluster3" onchange="set_progress_bars()">
+				Cluster 3 (capacity <span class="cluster_capacity"></span>)
+			</li>
+		</ul>
+	</p>
+</div>
+<p>Capacity: 
+	<div id="progress_bars">
+		<div id="progress_max"></div>
+		<div id="progress_current"></div>
+	</div>
+</p>
+<p><button onclick="assign_seats()" onload="assign_seats_onload()">Assign seats</button></p>
+{% endblock content %}

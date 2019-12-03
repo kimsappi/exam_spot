@@ -1,0 +1,7 @@
+*/config.yml
+*/hive_ic.py
+*/tools.py
+*/scrape_funcs.py
+*/run.sh
+*.log
+data/

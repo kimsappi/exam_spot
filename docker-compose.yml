@@ -1,0 +1,28 @@
+version: "3.3"
+
+services:
+  clustersitter-db:
+    image: postgres:12
+    restart: always
+    container_name: clustersitter-db
+    volumes:
+      - ./data/arm-db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=clustersitter
+      - POSTGRES_PASSWORD=123
+
+  clustersitter:
+    build: .
+    container_name: clustersitter
+    restart: always
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONDONTWRITEBYTECODE=1
+      - POSTGRES_USER=clustersitter
+      - POSTGRES_PASSWORD=123
+    ports:
+      - "5000:5000"
+    depends_on:
+      - clustersitter-db
+    tty: true
